@@ -1,0 +1,102 @@
+body{
+    background-color: rgb(74, 114, 114);
+    height: 1500px;
+    font-family: "Arial";
+}
+
+canvas{
+    position: relative;
+    padding: 0;
+    margin-right: 28%;
+    float: right;
+    display: block;
+    width: 800px;
+	height:800px;
+	border: 1px solid black;
+}
+
+@media only screen and (max-width: 1140px){
+    canvas {
+        margin: 0;
+        
+    }
+}
+
+
+
+@media only screen and (max-width: 1416px) and (min-width: 1200px){
+    #controls{
+        position: relative;
+        float: right;
+        bottom: 50%;
+    }
+}
+
+button{
+    border: 1px solid black;
+    background-color: #d3d3d3;
+    border-style: outset;
+    border-radius: 6px;
+    height: 25px;
+    box-shadow: 6px 6px 8px 1px #222020;
+    outline: none;
+    margin-right: 10px;
+    margin-top: 8px;
+}
+
+button:hover{
+    border-left: 1.5px solid #222020;
+    border-top: 1.3px solid #222020;
+    background-color: #ebababbb;
+    box-shadow: 7px 12px 12px 2px #222020;
+}
+
+button:active{
+    box-shadow: 3px 2px 6px 4px #222020;
+    border-left: 2.3px solid black;
+}
+
+input{
+    display: inline-block;
+}
+
+.inputText{
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    background-color: #3dad2e;
+    border: 1.5px solid black;
+    padding: 10px 5px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+/*Modal stylings*/
+.modalBtn{
+    background-color: #c4c4c4;
+}
+
+.modalBtn:hover{
+    background-color: rgb(32, 145, 41);
+    color: white;
+}
+
+.cancelBtn{
+    background-color: lightcoral;
+    font-weight: bold;
+    float: right;
+}
+
+.cancelBtn:hover{
+    color: white;
+    background-color: darkred;
+}
+
+.close-modal{
+    visibility: hidden;
+}
+
+#objMod{
+    background-color: goldenrod;
+}

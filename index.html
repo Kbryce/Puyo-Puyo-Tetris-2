@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+
+-need copy/paste
+-need place player
+-enable/disable lock to grid mode
+-click on sides of objects to expand and shrink
+
+-->
+<html>
+	<head>
+		<script src="scripts/jquery-3.3.1.min.js"></script>
+		<script src="scripts/functions.js"></script>
+		<script src="scripts/objects.js"></script>
+		<script src="scripts/blocks.js"></script>
+		<script src="scripts/mainScript.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+		<link rel="stylesheet" href="stylesheets/main.css">
+	</head>
+	<body onload="startGame(), txtBoxSide()">
+	
+		<div id="controls">
+			<div class="inputText">Obj Background Color: </div><input disabled="true" type="color" id="inputColor" value="#ff0000"> <br>
+			<div class="inputText">Obj Border Color: </div><input disabled="true" type="color" id="inputBorderColor" value="#ff0000"><br>
+			<button title="boolGrid" onclick="boolGrid();">Edit mode</button>
+			<button title="objInfo" onclick="objInfo();">Object Info</button>
+			<button title="clearScreen" onclick="clearScreen()">Clear Screen</button> <br>
+			<button title="allObjInfo" onclick="allObjInfo();">All Object Info</button>
+			<button title="screenString" onclick="screenString();">Screen Data</button>
+			<a href="#objMod" rel="modal:open"><button title="*modules*">Create Object</button></a><br><br>
+			<textarea id="infoBox"></textarea>
+		</div>
+		
+		
+		<!--Modals-->
+		<div id="objMod" class="modal">
+			<form>
+				<label for="xPos">X Position:</label><br>
+				<input placeholder="REQUIRED" type="number" id="xPos" name="xPos"><br>
+
+				<label for="yPos">Y Position:</label><br>
+				<input placeholder="REQUIRED" type="number" id="yPos" name="yPos"><br>
+
+				<label for="xPos">Width:</label><br>
+				<input placeholder="Enter number" type="number" id="width" name="width"><br>
+
+				<label for="yPos">Height:</label><br>
+				<input placeholder="Enter number" type="number" id="height" name="height"><br>
+
+				<button type="reset" id="createObj" class="modalBtn">Create Object</button>
+				<a href="#" rel="modal:close"><button class="cancelBtn">Cancel</button></a>
+			</form>
+			
+		</div>
+	</body>
+</html> 
