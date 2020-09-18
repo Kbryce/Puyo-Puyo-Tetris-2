@@ -39,7 +39,8 @@ var debug = {
 	prevObj : null,
 	mdlClickSel : false,
 	textBox: "left",
-	paste: false
+	paste: false,
+	stretching : {bool: false, side : null}
 };
 
 /*newTextBox(500, 50, 275, 62.5, "Score: ");
@@ -107,7 +108,16 @@ $(document).ready(function(){
 
 	$(c).mousedown(function(e){	
 		if(debug.showGrid){
-			if(e.which == 1){
+			if(e.which == 1){//left click
+				if(document.body.cursor.style == "n-resize"){
+					$(c).mousemove(function(e){
+						getMousePos(e.pageX, e.pageY);
+						let obj = debug.curObj;
+
+						
+					});
+				}
+
 				var found = false;
 				
 				shapes.forEach(function(obj, index){
@@ -169,12 +179,33 @@ $(document).ready(function(){
 		getMousePos(e.pageX, e.pageY);
 		debugShapeMoving();
 
-		if((mousePos.x >= debug.curObj.x - 5 && mousePos.x <= debug.curObj.x + 5) && (mousePos.y >= debug.curObj.y && mousePos.y <= debug.curObjy.y + debug.curObj.h)){
-			document.body.style.cursor = "ne-resize"
-		}else{
-			document.body.style.cursor = "default";
+		if(debug.curObj){
+			let obj = debug.curObj;
+			let grabArea = 8; //how far on each side of the selected shape the cursor style will be changed
+			
+			//for detecting which side the mouse is on of the selected object so we can change the cursor style to resizable
+			if(mousePos.x >= obj.left - grabArea && mousePos.x <= obj.left + grabArea && mousePos.y <= obj.bottom && mousePos.y >= obj.top){//mouse from the left
+				document.body.style.cursor = "e-resize";
+				debug.stretching.bool = true;
+				debug.stretching.side = "left";
+			}else if(mousePos.x >= obj.right - grabArea && mousePos.x <= obj.right + grabArea && mousePos.y <= obj.bottom && mousePos.y >= obj.top){//mouse from the right
+				document.body.style.cursor = "e-resize";
+				debug.stretching.bool = true;
+				debug.stretching.side = "right";
+			}else if(mousePos.x >= obj.left && mousePos.x <= obj.right && mousePos.y <= obj.top + grabArea && mousePos.y >= obj.top - grabArea){//mouse from the top
+				document.body.style.cursor = "n-resize";
+				debug.stretching.bool = true;
+				debug.stretching.side = "top";
+			}else if(mousePos.x >= obj.left && mousePos.x <= obj.right && mousePos.y <= obj.bottom + grabArea && mousePos.y >= obj.bottom - grabArea){//mouse from the bottom
+				document.body.style.cursor = "n-resize";
+				debug.stretching.bool = true;
+				debug.stretching.side = "bottom";
+			}else{
+				document.body.style.cursor = "default";
+				debug.stretching.bool = false;
+				debug.stretching.side = null;
+			}
 		}
-		
 	});
 
 	$(c).mouseup(function(){
@@ -226,7 +257,6 @@ $(document).ready(function(){
 								shapes[index].rotate();
 							}
 							else{
-								shapes[index].x -= 5;
 								document.body.style.cursor = "ne-resize";
 							}
 							
